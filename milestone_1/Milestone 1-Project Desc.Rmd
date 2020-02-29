@@ -1,0 +1,14 @@
+---
+title: "Milestone 1"
+author: "Almas K."
+date: '2020-02-29'
+output:
+  html_document:
+    keep_md: yes
+---
+
+# Hallucinogen Use and Personality Factors in Adults
+
+## Introduction:
+
+Hallucinogens are a class of compounds that alter consciousness and create hallucinations. These compounds include the drugs LSD, psilocybin(aka magic mushrooms), and mescaline(peyote). There has been current interest in the field of psychiatry into looking at hallucinogens as potential therapies for depression. [1](https://www.cbc.ca/radio/quirks/psychedelic-drugs-and-depression-runaway-stars-bird-flu-battle-and-more-1.4036396/can-psychedelic-drugs-work-magic-on-depression-1.4036497) 

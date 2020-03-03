@@ -54,11 +54,13 @@ library(patchwork)
 
 ## Introduction:
 
-Alcohol use has negatively been linked with performance in different situations due to its depressive 
-
+Alcohol use has been linked with cognitive impairement in the short term in a variety of situations such as in operation of a motor vehicle. Numerous factors have been found to affect a student's performance in a class, from sleep to diet.One previous study has shown the negative affect of alcohol on academic achievement in a student dataset from the United States [1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026599/).  Thus, it would be interesting to see if this affect on performance can be replicated in other datasets and whether time of alcohol consumption (weekend or weekday) makes a difference. 
+ 
 ## Data Description
-The datasets are obtained from UCI  and is originally from Fabio Pagnotta and Hossain Mohammad Amran. It contains survey data from Portugese highschool students in a Math and Portugese class and contains information on 33 attributes. Each class is its own .csv file, but I will be focussing on the attributes from the Portugese class dataset as it contains more students (649 students). Each student makes up each row. Below is the entire variable set:
+The datasets are obtained from UCI  and is originally from Fabio Pagnotta and Hossain Mohammad Amran. It contains survey data from Portugese highschool students in a Math and Portugese class and contains information on 33 attributes. Each class is its own .csv file, but I will be focussing on the attributes from the Portugese class dataset as it contains more students (649 students). Each student makes up each row. 
 This was generated from a colon separated file I made from the original txt metadata file.
+
+Below is the entire variable set:
 
 
 ```r
@@ -106,23 +108,13 @@ G2           second period grade                                                
 G3           final grade                                                         numeric: from 0 to 20, output target                                                                                                   
 
 
-
 ## Exploring the Dataset
 
 ### Load data
 
 
 ```r
-library(here)
 stu_por <-read.csv(here("data","student-por.csv"),sep=";")
-any(is.na(stu_por)) # checks for missing values
-```
-
-```
-## [1] FALSE
-```
-
-```r
 str(stu_por)
 ```
 
@@ -164,6 +156,14 @@ str(stu_por)
 ```
 
 
+```r
+any(is.na(stu_por)) # checks for missing values
+```
+
+```
+## [1] FALSE
+```
+
 ### Correllogram
 
 ```r
@@ -181,12 +181,9 @@ corr <- corrplot(student_cor,
          diag = FALSE) 
 ```
 
-![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
-G1 and G2 having the highest correlation with G3 makes sense here, as earlier term grades are correlated with later term grades.
-
-
-
+In this correllogram, we see a variety of factors having an association with final grades (G3). The colour scheme shows all positive correlations as blue, and all negative correlations as red.G1 and G2 having the highest correlation with G3 makes sense here, as earlier term grades are correlated with later term grades. We will mainly focus on the alcohol (Dalc and Walc), which show negative correlation.
 
 
 ### Boxplots
@@ -207,15 +204,15 @@ dalcstu_box <- stu_por %>%
 dalcstu_box 
 ```
 
-![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 ```r
 walcstu_box
 ```
 
-![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
+![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-6-2.png)<!-- -->
 
-
+We see differences in the spread from the very low(1) to very high (5) consumption, with a general decrease in the mean as the amount of alcohol consumption increases increases, especially in the workday consumption.
 ### Density Plots
 Let's look at the distribution of grades.
 
@@ -227,7 +224,7 @@ Let's look at the distribution of grades.
   ggtitle("Spread of Final Grades")
 ```
 
-![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 The distribution of grades appear to be a bit left skewed. 
 
@@ -259,7 +256,7 @@ health_stat_grades <-  stu_por %>%
  plot_annotation(title="Potential Confounding factors and grades")
 ```
 
-![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](Milestone-1-Project-Desc_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 It doesn't look like there is a huge difference between the grades in males compared to females. Males have a slighly lower average, but overall are similar. This is good because it will not be a huge confound in the data.Also family support and parental status have similar average values. 
 

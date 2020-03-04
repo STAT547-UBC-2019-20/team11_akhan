@@ -212,8 +212,13 @@ library(corrplot)</code></pre>
 <p>Below is the entire variable set:</p>
 <pre class="r"><code>meta_dat &lt;- read.delim((here(&quot;data&quot;,&quot;student_metadata.txt&quot;)),sep = &quot;;&quot;, header=FALSE)
 colnames(meta_dat) &lt;- c(&quot;variable&quot;,&quot;description&quot;,&quot;type&quot;)
-knitr:::kable(meta_dat)</code></pre>
+knitr:::kable(meta_dat, format=&quot;markdown&quot;)</code></pre>
 <table>
+<colgroup>
+<col width="5%"></col>
+<col width="31%"></col>
+<col width="63%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">variable</th>

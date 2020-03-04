@@ -30,7 +30,7 @@ Below is the entire variable set:
 ```{r}
 meta_dat <- read.delim((here("data","student_metadata.txt")),sep = ";", header=FALSE)
 colnames(meta_dat) <- c("variable","description","type")
-knitr:::kable(meta_dat)
+knitr:::kable(meta_dat, format="markdown")
 ```
 
 

@@ -39,7 +39,7 @@ knitr:::kable(meta_dat, format="markdown")
 ### Load data
 
 ```{r}
-stu_por <-read.csv(here("data","student-por.csv"))
+stu_por <-read.csv(here("data","student-por.csv"),sep=";")
 str(stu_por)
 ```
 

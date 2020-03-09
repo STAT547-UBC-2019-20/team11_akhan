@@ -8,7 +8,8 @@ This is a project repo for group 11 in the course of Stat 547. Here I will be wo
 3. images: contains the figures created by the R scripts in png format
 4. scripts: contains the relevant R scripts 
 
-Below is my table of contents:
+### Docs Table of Contents-Milestones
+Below is my table of contents for the milestones:
 |Name of milestone|Description|Status|Date completed|
 |---|---|---|---|
 |[Milestone 1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020
@@ -30,13 +31,12 @@ To completely reproduce the steps for analysis do the following:
        - glue
        
 
-3. Run the following scripts (in order) with the appropriate arguments specified
+3. Run the following scripts (in order) with the appropriate arguments specified:
 
         # Download data
         Rscript scripts/load.r --data_url="https://github.com/STAT547-UBC-2019-20/data_sets/raw/master/student-por.csv"
         
         # Clean and wrangle the data
-        
         Rscript scripts/clean.R --data_input="data/student_port_survey.csv"  --filename="cleaned_data"
         
         # Perform Basic EDA and generate some interesting plots

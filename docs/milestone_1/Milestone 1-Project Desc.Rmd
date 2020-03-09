@@ -112,7 +112,7 @@ Sex_grades <- stu_por %>%
   ggtitle("Sex of Individual")
 
 Pstat_grades <-  stu_por %>%
-  ggplot(aes(y=final_grade,x=Pstatus)) +
+  ggplot(aes(y=G3,col=Pstatus)) +
   geom_boxplot()+
   ggtitle('Parental Status')
 

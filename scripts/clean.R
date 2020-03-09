@@ -23,7 +23,7 @@ main <- function(data_input,filename){
   dat <- rename_columns(dat)
   dat <- keep_useful(dat)
   write_csv(dat,here("data",glue(filename,".csv")))
-  print(glue("Data has been cleaned and saved in the ",here("data"), " folder under ",filename,".csv"))
+  print(glue("Success! Data has been cleaned and saved in the ",here("data"), " folder under ",filename,".csv"))
 }
 #This function renames the ambiguously named G1,G2,G3 columns and other columns
 # @param dat is a input csv file
@@ -32,7 +32,7 @@ rename_columns <- function(dat){
   dat %>%
     dplyr::rename(t1_grade=G1,t2_grade=G2,final_grade=G3,mom_job=Mjob,
            dad_job=Fjob,weekend_alc=Walc,workday_alc=Dalc,mom_edu=Medu,dad_edu=Fedu,parent_status=Pstatus,
-           family_relations=famrel) 
+           family_relations=famrel,fam_support=famsup) 
 }
 
 # This function removes the not useful address and school columns 

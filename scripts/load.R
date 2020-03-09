@@ -20,6 +20,6 @@ main <- function(data_url) {
   #Save File
   write.csv(data,here("data","student_port_survey.csv"))
   #Print Message
-  print("Data has been loaded and saved in the data folder")
+  print("Success! Data has been loaded and saved in the data folder")
 }
 main(opt$data_url)

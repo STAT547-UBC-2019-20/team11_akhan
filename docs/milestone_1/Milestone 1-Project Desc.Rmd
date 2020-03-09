@@ -39,28 +39,10 @@ knitr:::kable(meta_dat, format="markdown")
 ### Load data
 
 ```{r}
-stu_por <-read.csv(here("data","cleaned_data.csv"))
+stu_por <-read.csv(here("data","student-por.csv"))
 str(stu_por)
 ```
 
-```{r}
-library(glue)
-boxplots_variables <- function(data,folder){
-  label=c("Sex","Parental Status","Family Support","Maternal Education","Health","Weekend Alcohol","Workday Alcohol")
-  variables= c("sex","parent_status","fam_support","mom_edu","health","weekend_alc","workday_alc")
- plts <- function(varit,label){
-   data %>%
-   ggplot(aes(y=final_grade,x=as.factor(data[,varit]))) +
-  geom_boxplot()+
-  labs(title=glue("Final Grades vs ",label),x=label)
-}
- plts2 <- map2(variables,label,~plts(.x,.y))
- filenames <- map(label,~glue("Final Grade vs ",.x,".png")) 
-  { walk2(.y=filenames,.x=plts2, ~ggsave(filename=.y, plot=.x, path=here(folder)))}
-
-   }
-boxplots <- boxplots_variables(stu_por,"images")
-```
 
 ```{r}
 any(is.na(stu_por)) # checks for missing values
@@ -72,7 +54,6 @@ student_cor <- stu_por %>%
   select_if(is.numeric) %>% # select numeric values
   sapply(as.double) %>% # convert to double
   cor() # run correlation
-png(height=1800, width=1800,filename = here("images","Correllogram.png"),type="cairo")
 student_cor<- round(student_cor,2)
 corr <- corrplot(student_cor, 
          type="upper", 
@@ -82,7 +63,7 @@ corr <- corrplot(student_cor,
          diag = FALSE) 
 
 corr
-dev.off()
+
 ```
 
 In this correllogram, we see a variety of factors having an association with final grades (G3). The colour scheme shows all positive correlations as blue, and all negative correlations as red.G1 and G2 having the highest correlation with G3 makes sense here, as earlier term grades are correlated with later term grades. We will mainly focus on the alcohol (Dalc and Walc), which show negative correlation.

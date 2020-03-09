@@ -4,4 +4,4 @@ This is a project repo for group 11 in the course of Stat 547. Here I will be wo
 Below is my table of contents:
 |Name of milestone|Description|Status|Date completed|
 |---|---|---|---|
-|[Milestone 1](https://github.com/almas2019/team11_akhan/blob/ak_branch1/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020
+|[Milestone 1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020

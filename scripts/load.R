@@ -7,8 +7,8 @@ Usage: load.R --data_url=<url_to_raw_data_file>
   "-> doc
 
 #Libraries
-library(tidyverse)
-library(docopt)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(docopt))
 library(here)
 
 #Functions: 

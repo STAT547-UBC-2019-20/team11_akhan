@@ -123,10 +123,10 @@ Numerous factors have been found to affect a student's performance in a
 class, from sleep to diet.One previous study has shown the negative
 affect of alcohol on academic achievement in a student dataset from the
 United States
-\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026599/}{1}. Thus,
-it would be interesting to see if this affect on performance can be
-replicated in other datasets and whether time of alcohol consumption
-(weekend or weekday) makes a difference.
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026599/}{Balsa et
+al.} Thus, it would be interesting to see if this affect on performance
+can be replicated in other datasets and whether time of alcohol
+consumption (weekend or weekday) makes a difference.
 
 \hypertarget{data-description}{%
 \subsection{Data Description}\label{data-description}}
@@ -140,7 +140,7 @@ it contains more students (649 students). Each student makes up each
 row. This was generated from a colon separated file I made from the
 original txt metadata file.
 
-Below is the entire variable set:
+Below is the entire variable set before cleaning up the file names:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -408,7 +408,6 @@ numeric: from 0 to 20, output target\strut
 \hypertarget{correllogram}{%
 \subsubsection{Correllogram}\label{correllogram}}
 
-\includegraphics{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Correllogram.png}
 \includegraphics[width=0.8\textwidth,height=\textheight]{images/Correllogram.png}
 
 In this correllogram, we see a variety of factors having an association
@@ -424,8 +423,7 @@ weekend), which show negative correlation.
 
 Let's look at weekend alcohol and workday alcohol use's spread.
 
-\includegraphics{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final Grade vs Weekend Alcohol.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Weekend Alcohol.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Workday Alcohol.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Weekend_Alcohol.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Workday_Alcohol.png}
 
 We see differences in the spread from the very low(1) to very high (5)
 consumption, with a general decrease in the mean as the amount of
@@ -451,9 +449,11 @@ grades
 
 \#\#\#\#\#``Potential Confounding factors and grades''
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Sex.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Maternal Education.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Parental status.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Family Support.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final Grade vs Health.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Sex.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Maternal_Education.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Parental_status.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Family_Support.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Health.png}
 
 It doesn't look like there is a huge difference between the grades in
 males compared to females. Males have a slighly lower average, but
@@ -465,10 +465,10 @@ values.
 \subsection{Research Question:}\label{research-question}}
 
 In this analysis, I will use linear regression to determine the
-relationship between alcohol use, either weekend, weekday (workday) or
-both and final grades (G3) for students. I chose the final grades as a
-output variable because it is more resistant to short term effects
-because it depends on work throughout the term.
+relationship between alcohol use, either weekend, workday or both and
+final grades for students. I chose the final grades as a output variable
+because it is more resistant to short term effects because it depends on
+work throughout the term.
 
 \hypertarget{plan-of-action}{%
 \subsection{Plan of Action:}\label{plan-of-action}}
@@ -500,7 +500,8 @@ Let's look at our linear model results.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(lm_model)}
+\NormalTok{tidy_lm_model <-}\StringTok{ }\KeywordTok{tidy}\NormalTok{(lm_model)}
+\NormalTok{tidy_lm_model}
 \end{Highlighting}
 \end{Shaded}
 
@@ -530,17 +531,22 @@ Let's look at our linear model results.
 
 The only result that seems to be significant is the workday alcohol with
 grades. The interaction term is not significant, thus we can point that
-workday alcohol affects grades as a main effect. There appprea
+workday alcohol affects grades as a main effect. There apppears be a
+negative correlation betweeen workday alcohol and grades.
 
 \hypertarget{residual-plots}{%
 \subsubsection{Residual Plots:}\label{residual-plots}}
 
 Let's look at qqplots of the residulat and residual vs fitted plots.
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_plot_qq.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_fitted_plot.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_plot_qq.png}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_fitted_plot.png}
 
 The residuals do not all fall onto the qqplot and thus are not fully
-normally distributed.
+normally distributed. A residual vs fitted plot should show random
+dispersion around the x axis, and thus shows the appropriateness of this
+data for a linear model. In this case, the points do not fully seem
+randomly dispersed.
 
 \hypertarget{discussionconclusions}{%
 \subsection{Discussion/Conclusions}\label{discussionconclusions}}
@@ -551,9 +557,17 @@ Balsa et al.'s study, which saw a significant, but small negative
 association with alcohol and grades, specifically for males. In my case,
 I did not separate by gender, which could be a future analysis. Also, I
 think including other covariates like family support in the future would
-be a good idea. Finally, given the qqplot, it would be best to
-potentially change the model from a simple linear regression that treats
-the predictor of alcohol use as a numeric, into a more complex model
-that treats this predictor as a categorical and uses dummy variables.
+be a good idea. Finally, given the qqplot and residual vs fitted plot
+show , it would be best to potentially change the model from a simple
+linear regression that treats the predictor of alcohol use as a numeric,
+into a more complex model that treats this predictor as a categorical
+and uses dummy variables.
+
+\hypertarget{reference}{%
+\paragraph{Reference:}\label{reference}}
+
+Balsa AI, Giuliano LM, French MT. The effects of alcohol use on academic
+achievement in high school. Econ Educ Rev.~2011;30(1):1--15.
+\url{doi:10.1016/j.econedurev.2010.06.015}
 
 \end{document}

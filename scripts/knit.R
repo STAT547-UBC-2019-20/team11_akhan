@@ -11,6 +11,7 @@ opt <- docopt(doc)
 main <- function(finalreport) {
 rmarkdown::render(finalreport, 
 c("html_document", "pdf_document"))
+  print(glue("Success! Files have been knitted to the",here()))
 }
 
 main(opt$finalreport_name)

@@ -42,3 +42,9 @@ To completely reproduce the steps for analysis do the following:
         # Perform Basic EDA and generate some interesting plots
         Rscript scripts/EDA.R --folder_path="images"
         
+        # Run linear regression and generate some plots
+        Rscript scripts/linear_regression.R --filename="cleaned_data.csv"
+        
+        #Knit the final report
+         Rscript scripts/knit.R --finalreport_name="Final_report.Rmd"
+        

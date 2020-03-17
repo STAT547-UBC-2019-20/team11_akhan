@@ -14,7 +14,6 @@ suppressPackageStartupMessages(library(glue))
 suppressPackageStartupMessages(library(corrplot))
 suppressPackageStartupMessages(library(purrr))
 library(here)
-getwd()
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -38,7 +37,7 @@ knitr:::kable(meta_dat, format="markdown")
 
 ### Correllogram
 
-![](../../images/Correllogram.png)
+![](here("images","Correllogram.png"))
 
 In this correllogram, we see a variety of factors having an association with final grades (G3). The colour scheme shows all positive correlations as blue, and all negative correlations as red.G1 and G2 having the highest correlation with G3 makes sense here, as earlier term grades are correlated with later term grades. We will mainly focus on the alcohol (Dalc and Walc), which show negative correlation.
 

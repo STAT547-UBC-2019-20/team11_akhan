@@ -1,0 +1,118 @@
+---
+title: "Final Report"
+author: "Almas K."
+date: '2020-03-16'
+output:
+  html_document:
+    fig_width: 5 
+    fig_height: 5 
+    theme: united
+    toc: true
+    toc_float: true
+  pdf_document:
+    keep_tex: true
+---
+```{r setup, include=FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(glue))
+library(here)
+knitr::opts_chunk$set(echo = TRUE)
+suppressPackageStartupMessages(library(broom))
+```
+
+## Introduction:
+
+Alcohol use has been linked with cognitive impairement in the short term in a variety of situations such as in operation of a motor vehicle. Numerous factors have been found to affect a student's performance in a class, from sleep to diet.One previous study has shown the negative affect of alcohol on academic achievement in a student dataset from the United States [Balsa et al.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026599/)
+Thus, it would be interesting to see if this affect on performance can be replicated in other datasets and whether time of alcohol consumption (weekend or weekday) makes a difference. 
+ 
+## Data Description
+The datasets are obtained from UCI  and is originally from Fabio Pagnotta and Hossain Mohammad Amran. It contains survey data from Portugese highschool students in a Math and Portugese class and contains information on 33 attributes. Each class is its own .csv file, but I will be focussing on the attributes from the Portugese class dataset as it contains more students (649 students). Each student makes up each row. 
+This was generated from a colon separated file I made from the original txt metadata file.
+
+Below is the entire variable set before cleaning up the file names:
+
+```{r}
+meta_dat <- read.delim((here("data","student_metadata.txt")),sep = ";", header=FALSE)
+colnames(meta_dat) <- c("variable","description","type")
+knitr:::kable(meta_dat, format="markdown")
+```
+
+## Data Exploration: 
+
+### Correllogram
+
+![](images/Correllogram.png){width=80%}
+
+In this correllogram, we see a variety of factors having an association with final grades . The colour scheme shows all positive correlations as blue, and all negative correlations as red.Term 1 grades(t1_grades) and term 2 grades(t2_grades) having the highest correlation with final_grades makes sense here, as earlier term grades are correlated with later term grades. We will mainly focus on the alcohol (workday and weekend), which show negative correlation.
+
+
+### Boxplots
+
+Let's look at weekend alcohol and workday alcohol use's spread.
+
+![](images/Final_Grade_vs_Weekend_Alcohol.png){width=80%}\ ![](images/Final_Grade_vs_Workday_Alcohol.png){width=80%}
+
+
+We see differences in the spread from the very low(1) to very high (5) consumption, with a general decrease in the mean as the amount of alcohol consumption increases increases, especially in the workday consumption.
+
+### Density Plots
+Let's look at the distribution of grades.
+
+![](images/density_plot_grades.png){width=80%}
+
+
+The distribution of grades appear to be a bit left skewed. 
+
+#### Other variables that may affect data
+Let's look at potential confounding factors like sex of the student, parental status and family support and their spread in average final grades
+
+#####"Potential Confounding factors and grades"
+
+![](images/Final_Grade_vs_Sex.png){width=80%}
+![](images/Final_Grade_vs_Maternal_Education.png){width=80%} 
+![](images/Final_Grade_vs_Parental_status.png){width=80%} ![](images/Final_Grade_vs_Family_Support.png){width=80%} 
+![](images/Final_Grade_vs_Health.png){width=80%} 
+
+
+It doesn't look like there is a huge difference between the grades in males compared to females. Males have a slighly lower average, but overall are similar. This is good because it will not be a huge confound in the data.Also family support and parental status have similar average values. 
+
+## Research Question:
+
+In this analysis, I will use linear regression to determine the relationship between alcohol use, either weekend, workday or both and final grades for students. I chose the final grades as a output variable because it is more resistant to short term effects because it depends on work throughout the term. 
+
+
+## Plan of Action:
+
+I will remove those with very bad health status (1), as to reduce confounds in the data. My main focus is on the alcohol use categories and final grades, so I will probably ignore the other factors.I will then perform linear regression analysis and plot a regression line using the relevant variables. 
+
+## Methods
+I performed a multivariate simple linear regression using the lm package, after removing the very bad health status(1). I used workday alcohol and weekend alcohol as covariates and looked at interaction between these 2 as well. 
+```{r}
+lm_model <- readRDS(here("data","lm_model_alc.RDS"))
+```
+
+
+## Results
+Let's look at our linear model results.
+```{r}
+tidy_lm_model <- tidy(lm_model)
+tidy_lm_model
+glance(lm_model)
+```
+
+The only result that seems to be significant is the workday alcohol with grades. The interaction term is not significant, thus we can point that workday alcohol affects grades as a main effect. There apppears be a negative correlation betweeen workday alcohol and grades. 
+
+
+### Residual Plots:
+Let's look at qqplots of the residulat and residual vs fitted plots. 
+
+![](images/residual_plot_qq.png){width=80%}
+![](images/residual_fitted_plot.png){width=80%}
+
+The residuals do not all fall onto the qqplot and thus are not fully normally distributed. A residual vs fitted plot should show random dispersion around the x axis, and thus shows the appropriateness of this data for a linear model. In this case, the points do not fully seem randomly dispersed. 
+
+## Discussion/Conclusions
+The only predictor variable that was significant was workday alcohol which had a negative association with final grades. This is in line with Balsa et al.'s study, which saw a significant, but small negative association with alcohol and grades, specifically for males. In my case, I did not separate by gender, which could be a future analysis. Also, I think including other covariates like family support in the future would be a good idea. Finally, given the qqplot and residual vs fitted plot show , it would be best to potentially change the model from a simple linear regression that treats the predictor of alcohol use as a numeric, into a more complex model that treats this predictor as a categorical and uses dummy variables.  
+
+#### Reference:
+Balsa AI, Giuliano LM, French MT. The effects of alcohol use on academic achievement in high school. Econ Educ Rev. 2011;30(1):1–15. doi:10.1016/j.econedurev.2010.06.015

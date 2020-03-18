@@ -52,17 +52,17 @@ dev.off()
 # @param data= input data as csv
 # @param folder= path of folder to save the image
 boxplots_variables <- function(data,folder){
-  label=c("Sex","Parental Status","Family Support","Maternal Education","Health","Weekend Alcohol","Workday Alcohol")
+  label=c("Sex","Parental_Status","Family_Support","Maternal_Education","Health","Weekend_Alcohol","Workday_Alcohol")
   variables= c("sex","parent_status","fam_support","mom_edu","health","weekend_alc","workday_alc")
   plts <- function(varit,label){
     data %>%
       ggplot(aes(y=final_grade,x=as.factor(data[,varit]))) +
       geom_boxplot()+
-      labs(title=glue("Final Grades vs ",label),x=label)+
+      labs(title=glue("Final_Grades_vs_",label),x=label)+
       theme_bw()
   }
   plts2 <- map2(variables,label,~plts(.x,.y))
-  filenames <- map(label,~glue("Final Grade vs ",.x,".png")) 
+  filenames <- map(label,~glue("Final_Grade_vs_",.x,".png")) 
   walk2(.y=filenames,.x=plts2, ~ggsave(filename=.y, plot=.x, path=here(folder),width = 20, height = 20, units = "cm"))
 }
 

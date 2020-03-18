@@ -30,6 +30,7 @@ To completely reproduce the steps for analysis do the following:
        - tidyverse
        - here
        - glue
+       - broom
        
 
 ### Running the whole pipeline with Make

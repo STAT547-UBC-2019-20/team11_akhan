@@ -14,7 +14,7 @@ Below is my table of contents for the milestones:
 |---|---|---|---|
 |[Milestone 1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020
 |[Milestone 2](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_2/Milestone_2-draft.md)|Basic Draft Report and R scripts|_completed_|March 9,2020
-|[Final Report-HTML](https://github.com/STAT547-UBC-2019-20/team11_akhan/master/Final_report.html)|Final Report HTML doc|_completed_|March 17/20|
+|[Final Report-HTML](https://github.com/STAT547-UBC-2019-20/team11_akhan/Final_report.html)|Final Report HTML doc|_completed_|March 17/20|
 ## Usage:
 
 To completely reproduce the steps for analysis do the following:

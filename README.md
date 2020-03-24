@@ -15,9 +15,17 @@ Below is my table of contents for the milestones:
 |[Milestone 1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020
 |[Milestone 2](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_2/Milestone_2-draft.md)|Basic Draft Report and R scripts|_completed_|March 9,2020
 |[Final Report-HTML](https://stat547-ubc-2019-20.github.io/team11_akhan/Final_report.html)|Final Report HTML doc|_completed_|March 17/20|
-|[Milestone_4]()|_completed_|March 24/20|
+|[Milestone_4](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_4/dashboard_draft_usage_des.md)|Includes Draft of dash app and description of it|_completed_|March 24/20|
+|[Dash Script-V1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/scripts/app.R)|Skeleton version of Dash script with just a header|_completed_|March 24/20|
 
 ## Dash App:
+
+#### Tab 1:
+![Tab 1](https://raw.githubusercontent.com/STAT547-UBC-2019-20/team11_akhan/master/images/dashboard_draft/Slide1.png)
+
+#### Tab 2:
+
+![Tab 2](https://raw.githubusercontent.com/STAT547-UBC-2019-20/team11_akhan/master/images/dashboard_draft/Slide2.png)
 
 ### Description:
 This app will have 2 tabs, the first being as the overview tab and the second one being the analysis tab. The first tab will include a boxplot that shows the spread of the selected grade and the selected factor chosen by the user from a dropdown provided(ex. Sex, weekend alcohol, workday alcohol, mother's education, family support, etc). The user also has the option to view a histogram of the grade chosen. Additionally, they can look at the number of students in each level of the factor they select through a demographic boxplot. For the second tab, the user can view a linear regression plot to get a better understanding of the effect of certain factors on grades.The user has the option to select which of the numeric factors to plot, these include workday alcohol, weekend alcohol, mother's education, number of absences, etc.They then select which grade to plot and include up to one binary covariable represented by the colour to look at interaction terms. In this example, sex is coloured and it is plotted by weekend alcohol and its effect on grades (here there is an obvious interaction with the crossing of the lines). I am potentially thinking of including the ability for users to hover over the plot to get the p value of the factor or interaction term which is the smallest. 

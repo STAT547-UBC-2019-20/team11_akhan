@@ -18,7 +18,7 @@ app <- Dash$new()
 
 ## Assign components to variables
 heading_title <- htmlH1('Portugese Highschool Student Survey Dashboard')
-## 3. Specify App layout
+## 3 Specify App layout
 app$layout(
   htmlDiv(
     list(

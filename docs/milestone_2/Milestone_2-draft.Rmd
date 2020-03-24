@@ -2,10 +2,12 @@
 title: "Milestone 2"
 author: "Almas K."
 date: '2020-03-09'
-output: 
+output:
   html_document:
-    keep_md: yes
     toc: true
+    toc_float: true
+  pdf_document:
+    keep_tex: true
 ---
 
 ```{r setup, include=FALSE}
@@ -36,6 +38,11 @@ knitr:::kable(meta_dat, format="markdown")
 ## Data Exploration: 
 
 ### Correllogram
+
+```{r}
+
+```
+
 
 ![](here("images","Correllogram.png"))
 

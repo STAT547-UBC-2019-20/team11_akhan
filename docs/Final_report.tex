@@ -142,14 +142,6 @@ original txt metadata file.
 
 Below is the entire variable set before cleaning up the file names:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{meta_dat <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{((}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{,}\StringTok{"student_metadata.txt"}\NormalTok{)),}\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{header=}\OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{colnames}\NormalTok{(meta_dat) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"variable"}\NormalTok{,}\StringTok{"description"}\NormalTok{,}\StringTok{"type"}\NormalTok{)}
-\NormalTok{knitr}\OperatorTok{:::}\KeywordTok{kable}\NormalTok{(meta_dat, }\DataTypeTok{format=}\StringTok{"markdown"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 \begin{minipage}[b]{0.05\columnwidth}\raggedright
@@ -408,7 +400,7 @@ numeric: from 0 to 20, output target\strut
 \hypertarget{correllogram}{%
 \subsubsection{Correllogram}\label{correllogram}}
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Correllogram.png}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Correllogram}
 
 In this correllogram, we see a variety of factors having an association
 with final grades . The colour scheme shows all positive correlations as
@@ -423,7 +415,8 @@ weekend), which show negative correlation.
 
 Let's look at weekend alcohol and workday alcohol use's spread.
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Weekend_Alcohol.png}~\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Workday_Alcohol.png}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Weekend_Alcohol}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Workday_Alcohol}
 
 We see differences in the spread from the very low(1) to very high (5)
 consumption, with a general decrease in the mean as the amount of
@@ -435,7 +428,7 @@ consumption.
 
 Let's look at the distribution of grades.
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/density_plot_grades.png}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/density_plot_grades}
 
 The distribution of grades appear to be a bit left skewed.
 
@@ -447,13 +440,12 @@ Let's look at potential confounding factors like sex of the student,
 parental status and family support and their spread in average final
 grades
 
-\#\#\#\#\#``Potential Confounding factors and grades''
+\#\#\#\#\#Potential Confounding factors and grades
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Sex.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Maternal_Education.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Parental_status.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Family_Support.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/Final_Grade_vs_Health.png}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Sex}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Parental_status}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Family_Support}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Final_Grade_vs_Health}
 
 It doesn't look like there is a huge difference between the grades in
 males compared to females. Males have a slighly lower average, but
@@ -487,11 +479,12 @@ package, after removing the very bad health status(1). I used workday
 alcohol and weekend alcohol as covariates and looked at interaction
 between these 2 as well.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lm_model <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{,}\StringTok{"lm_model_alc.RDS"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+I included a plot with workday alcohol on the x axis coloured by weekend
+alcohol
+\includegraphics{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/Linear_Reg_Plot_Final_Grade_vs_Weekend_Alcohol_and Workday_Alcohol.png}
+
+I didn't include an interaction plot because it was not significant(as
+you will see below).
 
 \hypertarget{results}{%
 \subsection{Results}\label{results}}
@@ -530,17 +523,20 @@ Let's look at our linear model results.
 \end{verbatim}
 
 The only result that seems to be significant is the workday alcohol with
-grades. The interaction term is not significant, thus we can point that
-workday alcohol affects grades as a main effect. There apppears be a
-negative correlation betweeen workday alcohol and grades.
+grades, whose pvalue is 0.0151823. The interaction term is not
+significant, thus we can point that workday alcohol affects grades as a
+main effect. The value of the main effect of this factor is is
+-1.1643133 This appears to be a negative correlation betweeen workday
+alcohol and grades, which means as workday drinking increases final
+grades decrease.
 
 \hypertarget{residual-plots}{%
 \subsubsection{Residual Plots:}\label{residual-plots}}
 
 Let's look at qqplots of the residulat and residual vs fitted plots.
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_plot_qq.png}
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/residual_fitted_plot.png}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/residual_plot_qq}
+\includegraphics[width=0.8\linewidth]{/Users/almas/Documents/GitHub/Stat547_class/Project/team11_akhan/images/residual_fitted_plot}
 
 The residuals do not all fall onto the qqplot and thus are not fully
 normally distributed. A residual vs fitted plot should show random

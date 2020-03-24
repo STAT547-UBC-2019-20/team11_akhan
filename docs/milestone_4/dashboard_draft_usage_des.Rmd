@@ -1,0 +1,18 @@
+---
+title: "Draft Dashboard Description and Usage"
+author: "Almas K."
+date: '2020-03-24'
+output: github_document
+---
+
+# Description
+
+In this description you are not required to use terminology specific to Dash apps (i.e. widgets, components, etc…) or make reference to specific libraries. Your sketch can be hand-drawn or mocked up using a graphics editor. If you can show the app visual design & interaction design in a single image that is ideal, but if you need more space to show other planned features of your app you can include up to a total of THREE images for this proposal. The sketch should be posted in the README.md file of your GitHub.com repository underneath the high level description.
+
+This app will have 2 tabs, the first being as the overview tab and the second one being the analysis tab. The first tab will include a boxplot that shows the spread of the selected grade and the selected factor chosen by the user from a dropdown provided(ex. Sex, weekend alcohol, workday alcohol, mother's education, family support, etc). The user also has the option to view a histogram of the grade chosen. Additionally, they can look at the number of students in each level of the factor they select through a demographic boxplot. For the second tab, the user can view a linear regression plot to get a better understanding of the effect of certain factors on grades.The user has the option to select which of the numeric factors to plot, these include workday alcohol, weekend alcohol, mother's education, number of absences, etc.They then select which grade to plot and include up to one binary covariable represented by the colour to look at interaction terms. In this example, sex is coloured and it is plotted by weekend alcohol and its effect on grades (here there is an obvious interaction with the crossing of the lines). I am potentially thinking of including the ability for users to hover over the plot to get the p value of the factor or interaction term which is the smallest. 
+#Usage Scenario
+
+Usage scenarios are typically written in a narrative style and include the specific context of usage, tasks associated with that usage context, and a hypothetical walkthrough of how the user would accomplish those tasks with your app. If you are using a Kaggle dataset, you may use their “Overview (inspiration)” to create your usage scenario, or you may come up with your own inspiration.
+
+ Bia Almeda is a local principal in Portugal, who is concerned with the dropping grades in her school.She interested in [exploring] factors that could affect student performance in order to come up with school policies and campaigns that could better support student learning. She wants to [compare] different factors that affect student learning in order to [identify] some variables that the school team could target. When Bia visits the Portugese high school survey app, she chooses to look at a number of different factors that seem to affect the spread of final grades. She notices that workday alcohol has a negative effect on the final grades of students. Additionally, she finds an interaction between alcohol use and sex of the individual. Through this, she decides to conduct a follow-up survey to look at the ways students cope and potentially bring in better supports for student mental health,with a more targetted strategy aimed at each gender. 
+An example usage scenario with tasks (tasks are indicated in brackets, i.e. [task])

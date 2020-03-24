@@ -31,7 +31,7 @@ This was generated from a colon separated file I made from the original txt meta
 
 Below is the entire variable set before cleaning up the file names:
 
-```{r}
+```{r,echo=FALSE}
 meta_dat <- read.delim((here("data","student_metadata.txt")),sep = ";", header=FALSE)
 colnames(meta_dat) <- c("variable","description","type")
 knitr:::kable(meta_dat, format="markdown")
@@ -41,7 +41,11 @@ knitr:::kable(meta_dat, format="markdown")
 
 ### Correllogram
 
-![](images/Correllogram.png){width=80%}
+```{r out.width='80%',echo=FALSE}
+knitr::include_graphics(here("images","Correllogram.png"))
+```
+
+
 
 In this correllogram, we see a variety of factors having an association with final grades . The colour scheme shows all positive correlations as blue, and all negative correlations as red.Term 1 grades(t1_grades) and term 2 grades(t2_grades) having the highest correlation with final_grades makes sense here, as earlier term grades are correlated with later term grades. We will mainly focus on the alcohol (workday and weekend), which show negative correlation.
 
@@ -50,7 +54,10 @@ In this correllogram, we see a variety of factors having an association with fin
 
 Let's look at weekend alcohol and workday alcohol use's spread.
 
-![](images/Final_Grade_vs_Weekend_Alcohol.png){width=80%}\ ![](images/Final_Grade_vs_Workday_Alcohol.png){width=80%}
+```{r out.width='80%',echo=FALSE}
+knitr::include_graphics(here("images","Final_Grade_vs_Weekend_Alcohol.png"))
+knitr::include_graphics(here("images","Final_Grade_vs_Workday_Alcohol.png"))
+```
 
 
 We see differences in the spread from the very low(1) to very high (5) consumption, with a general decrease in the mean as the amount of alcohol consumption increases increases, especially in the workday consumption.
@@ -58,7 +65,9 @@ We see differences in the spread from the very low(1) to very high (5) consumpti
 ### Density Plots
 Let's look at the distribution of grades.
 
-![](images/density_plot_grades.png){width=80%}
+```{r out.width='80%',echo=FALSE}
+knitr::include_graphics(here("images","density_plot_grades.png"))
+```
 
 
 The distribution of grades appear to be a bit left skewed. 
@@ -66,12 +75,14 @@ The distribution of grades appear to be a bit left skewed.
 #### Other variables that may affect data
 Let's look at potential confounding factors like sex of the student, parental status and family support and their spread in average final grades
 
-#####"Potential Confounding factors and grades"
+#####Potential Confounding factors and grades
+```{r out.width='80%',echo=FALSE}
+knitr::include_graphics(here("images","Final_Grade_vs_Sex.png"))
+knitr::include_graphics(here("images","Final_Grade_vs_Parental_status.png"))
+knitr::include_graphics(here("images","Final_Grade_vs_Family_Support.png"))
+knitr::include_graphics(here("images","Final_Grade_vs_Health.png"))
+```
 
-![](images/Final_Grade_vs_Sex.png){width=80%}
-![](images/Final_Grade_vs_Maternal_Education.png){width=80%} 
-![](images/Final_Grade_vs_Parental_status.png){width=80%} ![](images/Final_Grade_vs_Family_Support.png){width=80%} 
-![](images/Final_Grade_vs_Health.png){width=80%} 
 
 
 It doesn't look like there is a huge difference between the grades in males compared to females. Males have a slighly lower average, but overall are similar. This is good because it will not be a huge confound in the data.Also family support and parental status have similar average values. 
@@ -87,10 +98,16 @@ I will remove those with very bad health status (1), as to reduce confounds in t
 
 ## Methods
 I performed a multivariate simple linear regression using the lm package, after removing the very bad health status(1). I used workday alcohol and weekend alcohol as covariates and looked at interaction between these 2 as well. 
-```{r}
+```{r,echo=FALSE}
 lm_model <- readRDS(here("data","lm_model_alc.RDS"))
 ```
 
+I included a plot with workday alcohol on the x axis coloured by weekend alcohol 
+```{r echo=FALSE}
+knitr::include_graphics(here("images","Linear_Reg_Plot_Final_Grade_vs_Weekend_Alcohol_and Workday_Alcohol.png"))
+```
+
+I didn't include an interaction plot because it was not significant(as you will see below).
 
 ## Results
 Let's look at our linear model results.
@@ -100,14 +117,17 @@ tidy_lm_model
 glance(lm_model)
 ```
 
-The only result that seems to be significant is the workday alcohol with grades. The interaction term is not significant, thus we can point that workday alcohol affects grades as a main effect. There apppears be a negative correlation betweeen workday alcohol and grades. 
+The only result that seems to be significant is the workday alcohol with grades, whose pvalue is `r tidy_lm_model$p.value[2]`. The interaction term is not significant, thus we can point that workday alcohol affects grades as a main effect. The value of the main effect of this factor is is `r tidy_lm_model$estimate[2]` This appears to be a negative correlation betweeen workday alcohol and grades, which means as workday drinking increases final grades decrease. 
 
 
 ### Residual Plots:
 Let's look at qqplots of the residulat and residual vs fitted plots. 
 
-![](images/residual_plot_qq.png){width=80%}
-![](images/residual_fitted_plot.png){width=80%}
+```{r out.width='80%',echo=FALSE}
+knitr::include_graphics(here("images","residual_plot_qq.png"))
+knitr::include_graphics(here("images","residual_fitted_plot.png"))
+```
+
 
 The residuals do not all fall onto the qqplot and thus are not fully normally distributed. A residual vs fitted plot should show random dispersion around the x axis, and thus shows the appropriateness of this data for a linear model. In this case, the points do not fully seem randomly dispersed. 
 

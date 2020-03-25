@@ -14,7 +14,7 @@ Below is my table of contents for the milestones:
 |---|---|---|---|
 |[Milestone 1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_1/Milestone-1-Project-Desc.md)|Dataset EDA, and research|_completed_|March 3,2020
 |[Milestone 2](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_2/Milestone_2-draft.md)|Basic Draft Report and R scripts|_completed_|March 9,2020
-|[Final Report-HTML](https://stat547-ubc-2019-20.github.io/team11_akhan/Final_report.html)|Final Report HTML doc|_completed_|March 17/20|
+|[Final Report-HTML](https://stat547-ubc-2019-20.github.io/team11_akhan/docs/Final_report.htmll)|Final Report HTML doc|_completed_|March 17/20|
 |[Milestone_4](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/docs/milestone_4/dashboard_draft_usage_des.md)|Includes Draft of dash app and description of it|_completed_|March 24/20|
 |[Dash Script-V1](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/scripts/app.R)|Skeleton version of Dash script with just a header|_completed_|March 24/20|
 

@@ -154,16 +154,6 @@ grade_button2 <- dccRadioItems(
   value = 'final_grade'
 )
 
-## Checklist
-
-checkbox1 <- dccChecklist(
-  options=list(
-    list("label" = "Boxplot", "value" = "boxp"),
-    list("label" = "Histogram", "value" = "hist"),
-    list("label" = "Demographic Bar Chart", "value" = "bar")
-  ),
-  value=list("boxp", "hist","bar")
-)
 ## 3 Specify App layout
 app$layout(
   
@@ -199,27 +189,6 @@ app$layout(
   )
 )
 
-# app$layout(
-#   htmlDiv(
-#     list(
-#       heading_title,
-#       checkbox1,
-#       htmlLabel("Pick a factor"),
-#       varsDropdown1,
-#       htmlLabel("Pick the grade to plot by"),
-#       grade_button,
-#       graph_1,
-#       graph_2,
-#       graph_3,
-#       htmlLabel("Pick the Factor(x) to plot by"),
-#       varsDropdown2,
-#       htmlLabel("Pick the Factor to colour by"),
-#       varsDropdown3,
-#       graph_4
-#       
-#     )
-#   )
-# )
 
 ## 4. App callback
 app$callback(
@@ -235,7 +204,7 @@ app$callback(
           # list(
           htmlDiv(
             list(
-          heading_title, checkbox1,
+          heading_title, 
           htmlLabel("Pick a factor"),
           varsDropdown1,
           htmlLabel("Pick the grade to plot by"),
@@ -250,7 +219,7 @@ app$callback(
                 )
               )
               
-            ), style = list('display'='flex',
+            ), style = list('display'='block',
                             'white-space'='pre-line')
           ),
           htmlDiv(
@@ -264,7 +233,7 @@ app$callback(
               list(
                 # Histogram here
                 graph_3
-              )
+              ),style = list('display'='block')
           )
         )
       )
@@ -308,6 +277,7 @@ app$callback(
   function(factor_val,grade) {
     make_plot1(factor_val,grade)}
 )
+
 app$callback(
   output = list(id='histogram', property='figure'),
   params = list(input(id='grade_choice', property='value')),
@@ -330,5 +300,6 @@ app$callback(
   function(factor_val,grade,colour) {
     make_plot4(factor_val,grade,colour)}
 )
+
 #5. Run App
 app$run_server(host = "0.0.0.0", port = Sys.getenv('PORT', 8050))

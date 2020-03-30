@@ -11,13 +11,16 @@ Usage: app.R
 library(dash)
 library(dashCoreComponents)
 library(dashHtmlComponents)
+library(dashTable)
 library(tidyverse)
 library(plotly)
 library(here)
 
 # 2. Create Dash instance
-app <- Dash$new()
+app <- Dash$new(external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.css")
 
+#Set plot sizes
+options(repr.plot.width = 10, repr.plot.height = 10)
 #Load the data:
 
 data <- read_csv(here("data","cleaned_data.csv"))
@@ -143,29 +146,161 @@ grade_button <- dccRadioItems(
                  list(label = 'Term 1 Grade', value = 't1_grade')),
   value = 'final_grade'
 )
+grade_button2 <- dccRadioItems(
+  id = 'grade_choice2',
+  options = list(list(label = 'Final Grade', value = 'final_grade'),
+                 list(label = 'Term 2 Grade', value = 't2_grade'),
+                 list(label = 'Term 1 Grade', value = 't1_grade')),
+  value = 'final_grade'
+)
+
+## Checklist
+
+checkbox1 <- dccChecklist(
+  options=list(
+    list("label" = "Boxplot", "value" = "boxp"),
+    list("label" = "Histogram", "value" = "hist"),
+    list("label" = "Demographic Bar Chart", "value" = "bar")
+  ),
+  value=list("boxp", "hist","bar")
+)
 ## 3 Specify App layout
 app$layout(
+  
+  # TITLE BAR
   htmlDiv(
     list(
-      heading_title,
-      htmlLabel("Pick a factor"),
-      varsDropdown1,
-      htmlLabel("Pick the grade to plot by"),
-      grade_button,
-      graph_1,
-      graph_2,
-      graph_3,
-      htmlLabel("Pick the Factor(x) to plot by"),
-      varsDropdown2,
-      htmlLabel("Pick the Factor to colour by"),
-      varsDropdown3,
-      graph_4
-      
+      heading_title
+    ), style = list('columnCount'=1, 
+                    'background-color'= 'black', 
+                    'color'='white',
+                    'text-align'='center')
+  ),
+  
+  # MAIN AREA
+  htmlDiv(
+    list(
+      # TABS
+      dccTabs(id="tabs", value='tab-1', children=list(
+        dccTab(label='Overview Mode', value='tab-1'),
+        dccTab(label='Analysis Mode', value='tab-2')
+      )),
+      htmlDiv(id='tabs-content')
     )
+  ),
+  htmlDiv(
+    list(
+      htmlH2("Dataset Desciption:"),
+      htmlP("This dataset contains demographic information about students in a Portugese class and their grades")
+    ), style = list('background-color'='black',
+                    'color'='white',
+                    'font-family'='Courier',
+                    'text-align'='center')
   )
 )
 
+# app$layout(
+#   htmlDiv(
+#     list(
+#       heading_title,
+#       checkbox1,
+#       htmlLabel("Pick a factor"),
+#       varsDropdown1,
+#       htmlLabel("Pick the grade to plot by"),
+#       grade_button,
+#       graph_1,
+#       graph_2,
+#       graph_3,
+#       htmlLabel("Pick the Factor(x) to plot by"),
+#       varsDropdown2,
+#       htmlLabel("Pick the Factor to colour by"),
+#       varsDropdown3,
+#       graph_4
+#       
+#     )
+#   )
+# )
+
 ## 4. App callback
+app$callback(
+  
+  output = list(id = 'tabs-content', property = 'children'),
+  
+  params = list(input(id='tabs', 'value')),
+  
+  render_content <- function(tab) {
+    if (tab == 'tab-1') {
+      htmlDiv(
+        list(
+          # list(
+          htmlDiv(
+            list(
+          heading_title, checkbox1,
+          htmlLabel("Pick a factor"),
+          varsDropdown1,
+          htmlLabel("Pick the grade to plot by"),
+          grade_button
+              )
+          ),
+          htmlDiv(
+            list(
+              htmlDiv(
+                list(
+                  graph_1
+                )
+              )
+              
+            ), style = list('display'='flex',
+                            'white-space'='pre-line')
+          ),
+          htmlDiv(
+            list(
+              # Histogram here
+              
+              graph_2
+            )
+          ),
+            htmlDiv(
+              list(
+                # Histogram here
+                graph_3
+              )
+          )
+        )
+      )
+    }
+    
+    else if (tab == 'tab-2') {
+      htmlDiv(
+        list(
+          
+          # DROPDOWNS
+          htmlDiv(
+            list(
+              htmlDiv(
+                list(
+                  htmlLabel("Pick the Factor(x) to plot by"),
+                        varsDropdown2,
+                  grade_button2,
+                        htmlLabel("Pick the Factor to colour by"),
+                        varsDropdown3
+                )
+              )
+            ), style = list('white-space'='pre-line')
+          ),
+          htmlDiv(
+            list(
+              graph_4
+            )
+          )
+        )
+      )
+    }
+  }
+)
+
+
+
 app$callback(
   output = list(id='boxplot', property='figure'),
   params = list(input(id='dropdown1', property='value'),
@@ -190,10 +325,10 @@ app$callback(
 app$callback(
   output = list(id='lin_reg', property='figure'),
   params = list(input(id='dropdown2', property='value'),
-                input(id='grade_choice', property='value'),
+                input(id='grade_choice2', property='value'),
                 input(id='dropdown3', property='value')),
   function(factor_val,grade,colour) {
     make_plot4(factor_val,grade,colour)}
 )
 #5. Run App
-app$run_server(debug=TRUE)
+app$run_server(host = "0.0.0.0", port = Sys.getenv('PORT', 8050))

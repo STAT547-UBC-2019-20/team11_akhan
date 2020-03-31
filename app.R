@@ -62,7 +62,7 @@ make_plot2 <- function(grade = "final_grade") {
     geom_bar() + 
     labs(x =glab,
          y="Number of students") + 
-    ggtitle(paste0("Spread of ",glab, " Overalll"))
+    ggtitle(paste0("Spread of ",glab, " overall"))
   
   plot <-  ggplotly(plot) }
 
@@ -76,7 +76,7 @@ make_plot3 <- function(vars="workday_alc") {
     geom_bar() + 
     labs(x =factor_lab,
          y="Number of students") + 
-    ggtitle(paste0("Number of students in  ",factor_lab, " factor overalll"))
+    ggtitle(paste0("Number of students in  ",factor_lab, " factor overall"))
   
   plot <-  ggplotly(plot) }
 
@@ -204,7 +204,7 @@ app$callback(
           # list(
           htmlDiv(
             list(
-          heading_title, 
+          htmlP("This tab looks at different demographic factors that could affect student grades. Below there is a boxplot that looks at the how grades of students are distributed over different factors. There is also a density plot that shows the spread of the particular grades from all the students overall and a boxplot that shows the overall number of students in each factor.") ,
           htmlLabel("Pick a factor"),
           varsDropdown1,
           htmlLabel("Pick the grade to plot by"),
@@ -216,18 +216,15 @@ app$callback(
               htmlDiv(
                 list(
                   graph_1
-                )
+                ), style=list('width'='90%')
               )
-              
-            ), style = list('display'='block',
-                            'white-space'='pre-line')
-          ),
-          htmlDiv(
-            list(
-              # Histogram here
-              
-              graph_2
-            )
+              ,
+              htmlDiv(
+                list(
+                  graph_2
+                ), style=list('width'='90%')
+              )
+            ),style = list('display'='flex')
           ),
             htmlDiv(
               list(
@@ -248,8 +245,10 @@ app$callback(
             list(
               htmlDiv(
                 list(
+                  htmlP("This tab looks at the linear regression analysis of different demographic factors and their effect in the plot below."),
                   htmlLabel("Pick the Factor(x) to plot by"),
                         varsDropdown2,
+                  htmlLabel("Pick the grade to plot by(y)"),
                   grade_button2,
                         htmlLabel("Pick the Factor to colour by"),
                         varsDropdown3

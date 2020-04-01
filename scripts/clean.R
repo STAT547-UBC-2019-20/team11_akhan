@@ -35,11 +35,11 @@ rename_columns <- function(dat){
            family_relations=famrel,fam_support=famsup) 
 }
 
-# This function removes the not useful address and school columns 
+# This function removes the not useful reason for attending a school and school columns 
 # @param dat is a input csv file
 keep_useful <- function(dat){
   dat %>%
-    select(-address,-school)
+    select(-school,-reason)
 }
 
 ##tests

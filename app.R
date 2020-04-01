@@ -248,7 +248,7 @@ app$callback(
                   htmlP("This tab looks at the linear regression analysis of different demographic factors and their effect in the plot below."),
                   htmlLabel("Pick the Factor(x) to plot by"),
                         varsDropdown2,
-                  htmlLabel("Pick the grade to plot by(y)"),
+                  htmlLabel("Pick the grade to plot by (y)"),
                   grade_button2,
                         htmlLabel("Pick the Factor to colour by"),
                         varsDropdown3

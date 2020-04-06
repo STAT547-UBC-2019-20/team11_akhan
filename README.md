@@ -54,6 +54,7 @@ To completely reproduce the steps for analysis do the following:
        - tidyverse
        - here
        - glue
+       - broom
        - devtools --> for Dash App
        - install_github("plotly/dashR", upgrade = TRUE) --> for Dash App
        

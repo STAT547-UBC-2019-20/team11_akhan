@@ -1,12 +1,15 @@
 # team11_akhan
 This is a project repo for group 11 in the course of Stat 547. Here I will be working with student survey data from a Portugese school. This project is broken down into 6 milestones and there will be two major themes, the first is an analysis pipeline and the second is the creation of a dashboard using the same dataset.
 
+The link to the dataset is found at [Stat 547 Raw data-Student Portugese CSV](https://github.com/STAT547-UBC-2019-20/data_sets/raw/master/student-por.csv). This was manually unzipped data taken from : [UCL ML Repository](http://archive.ics.uci.edu/ml/datasets/Student+Performance)
+
 ## Directory Structure:
 
 1. data: contains all the relevant data in .csv format (raw and processed), as well as metadata in .txt format
 2. docs: contains .Rmd scripts and the draft report
 3. images: contains the figures created by the R scripts in png format
 4. scripts: contains the relevant R scripts 
+5. app.R: found in root directory, for DashR dashboard.
 
 ### Docs Table of Contents-Milestones
 Below is my table of contents for the milestones:
@@ -19,6 +22,8 @@ Below is my table of contents for the milestones:
 |[Dash Script-V2](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/app.R)|Updated Dash script with all components and tabs|_completed_|March 31/20|
 
 ## Dash App:
+
+To Run this app in your terminal run `Rscript app.R`
 
 #### Tab 1:
 ![Tab 1](https://raw.githubusercontent.com/STAT547-UBC-2019-20/team11_akhan/master/images/dashboard_draft/Slide1.png)
@@ -97,3 +102,6 @@ To completely reproduce the steps for analysis do the following:
         #Knit the final report
          Rscript scripts/knit.R --finalreport_name="docs/Final_report.Rmd"
         
+### Running the DashR Dashboard Application 
+As stated above: 
+    #To Run this app in your terminal run `Rscript app.R`

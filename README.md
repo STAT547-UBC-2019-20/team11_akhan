@@ -104,4 +104,5 @@ To completely reproduce the steps for analysis do the following:
         
 ### Running the DashR Dashboard Application 
 As stated above: 
+
     #To Run this app in your terminal run `Rscript app.R`

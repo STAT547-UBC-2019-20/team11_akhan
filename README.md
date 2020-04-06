@@ -57,6 +57,7 @@ To completely reproduce the steps for analysis do the following:
        - broom
        - devtools --> for Dash App
        - install_github("plotly/dashR", upgrade = TRUE) --> for Dash App
+
        
 
 ### Running the whole pipeline with Make

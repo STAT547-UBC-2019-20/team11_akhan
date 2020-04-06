@@ -31,9 +31,8 @@ xaxisKey <- tibble(label = c("Sex", "Age","Urban or Rural","Family Size","Parent
                    value = data_cols[1:28])
 numfactKey <- tibble(label = c("Age","Mom's Education Status","Dad's Education Status","School Travel Time","Study Time","Number of Failures","Family Relations","Free Time","Goes Out with Frieds","Workday Alcohol", "Weekend Alcohol","Health Status","Number of Absences"),
                      value =c(data_cols[2],data_cols[6:7],data_cols[11:13],data_cols[22:28]))
-binfactKey <- tibble(label = c("Sex","Urban or Rural","Family Size","Parental Status","Guardian","School Support","Family Support","Extra Paid Classes","Extracurriculars","Attended Preschool","Wants Higher Education","Home Internet","Romantic Relations"),
-                     value =c(data_cols[1],data_cols[3:5],data_cols[10],data_cols[14:21]))
-## Make plots:
+binfactKey <- tibble(label = c("None","Sex","Urban or Rural","Family Size","Parental Status","Guardian","School Support","Family Support","Extra Paid Classes","Extracurriculars","Attended Preschool","Wants Higher Education","Home Internet","Romantic Relations"),
+                     value =c("None",data_cols[1],data_cols[3:5],data_cols[10],data_cols[14:21]))
 make_plot1 <- function(vars="workday_alc",grade = "final_grade") {
   # gets the label matching the column value
   factor_lab<- xaxisKey$label[xaxisKey$value==vars]
@@ -80,12 +79,13 @@ make_plot3 <- function(vars="workday_alc") {
   
   plot <-  ggplotly(plot) }
 
-make_plot4 <- function(vars="workday_alc",grade="final_grade",colour="sex") {
+make_plot4 <- function(vars="workday_alc",grade="final_grade",colour="None") {
   factor_lab<- numfactKey$label[numfactKey$value==vars]
   glab <- if_else(grade=="final_grade","Final Grade",
                   if_else(grade=="t1_grade","Term 1 Grade",
                           "Term 2 Grade"))
-  colour_lab<- binfactKey$label[binfactKey$value==colour]
+ # colour_lab<- binfactKey$label[binfactKey$value==colour]
+  colour <- if_else(colour=="None","",colour)
   # add a ggplot
   plot <- data%>% 
     ggplot(aes(x=!!sym(vars),y=!!sym(grade),col=!!sym(colour))) +
@@ -134,7 +134,7 @@ varsDropdown3 <- dccDropdown(
     1:nrow(binfactKey), function(i){
       list(label=binfactKey$label[i], value=binfactKey$value[i])
     }),
-  value = "sex"
+  value = "None"
 )
 
 

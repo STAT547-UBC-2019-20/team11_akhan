@@ -27,7 +27,7 @@ data <- read_csv(here("data","cleaned_data.csv"))
 ## Assign components to variables
 heading_title <- htmlH1('Portugese Highschool Student Survey Dashboard')
 data_cols<- colnames(data)
-xaxisKey <- tibble(label = c("Sex", "Age","Urban or Rural","Family Size","Parental Status","Mom's Education Status","Dad's Education Status","Mom's Job", "Dad's Job","Guardian","School Travel Time","Study Time","Number of Failures","School Support","Family Support","Extra Paid Classes","Extracurriculars","Attended Preschool","Wants Higher Education","Home Internet","Romantic Relations","Family Relations","Free Time","Goes Out with Frieds","Workday Alcohol", "Weekend Alcohol","Health Status","Number of Absences"),
+xaxisKey <- tibble(label = c("Sex", "Age","Urban or Rural","Family Size","Parental Status","Mom's Education Status","Dad's Education Status","Mom's Job", "Dad's Job","Guardian","School Travel Time","Study Time","Number of Failures","School Support","Family Support","Extra Paid Classes","Extracurriculars","Attended Preschool","Wants Higher Education","Home Internet","Romantic Relations","Family Relations","Free Time","Goes Out with Friends","Workday Alcohol", "Weekend Alcohol","Health Status","Number of Absences"),
                    value = data_cols[1:28])
 numfactKey <- tibble(label = c("Age","Mom's Education Status","Dad's Education Status","School Travel Time","Study Time","Number of Failures","Family Relations","Free Time","Goes Out with Frieds","Workday Alcohol", "Weekend Alcohol","Health Status","Number of Absences"),
                      value =c(data_cols[2],data_cols[6:7],data_cols[11:13],data_cols[22:28]))

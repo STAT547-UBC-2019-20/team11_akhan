@@ -1,6 +1,6 @@
 {
   "name": "Deployment of DashR app of Portugese High School Survey to heroku",
-  "description": "This app contains a dashboard displaying the survey data, and it displays it well.",
+  "description": "This app contains a dashboard that allows user to explore the survey data of high school students, through both demographic plots and linear regression analysis plots.",
   "keywords": [
     "heroku",
     "R deployment",

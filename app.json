@@ -1,0 +1,9 @@
+{
+  "name": "Deployment of DashR app of Portugese High School Survey to heroku",
+  "description": "This app contains a dashboard displaying the survey data, and it displays it well.",
+  "keywords": [
+    "heroku",
+    "R deployment",
+    "Dash R"
+],
+}

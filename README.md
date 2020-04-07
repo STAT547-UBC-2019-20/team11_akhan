@@ -1,7 +1,7 @@
 # team11_akhan
 This is a project repo for group 11 in the course of Stat 547. Here I will be working with student survey data from a Portugese school. This project is broken down into 6 milestones and there will be two major themes, the first is an analysis pipeline and the second is the creation of a dashboard using the same dataset.
 
-The link to the dataset is found at [Stat 547 Raw data-Student Portugese CSV](https://github.com/STAT547-UBC-2019-20/data_sets/raw/master/student-por.csv). This was manually unzipped data taken from : [UCL ML Repository](http://archive.ics.uci.edu/ml/datasets/Student+Performance)
+The link to the dataset is found in [data/student_port_survey.csv](https://github.com/STAT547-UBC-2019-20/team11_akhan/blob/master/data/student_port_survey.csv). Another public repository that has this data (as of April 2020) is [here](https://github.com/STAT547-UBC-2019-20/data_sets/raw/master/student-por.csv). This dataset was manually unzipped data taken from : [UCL ML Repository](http://archive.ics.uci.edu/ml/datasets/Student+Performance)
 
 ## Directory Structure:
 
